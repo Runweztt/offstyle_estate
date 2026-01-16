@@ -86,23 +86,21 @@ export default function About() {
     <main>
       {/* ========== HERO SECTION ========== */}
       <section className="relative overflow-hidden pt-[100px] text-white min-h-[200px] flex items-center">
-        <img 
-          src="/images/background/1.webp" 
-          alt="" 
+        <img
+          src="/images/background/1.webp"
+          alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="container mx-auto px-4 relative z-10 py-12">
-          <div className="flex flex-wrap justify-between items-center gap-6">
-            <div className="w-full lg:w-7/12">
+          <div className="flex flex-wrap justify-center items-center gap-6">
+            <div className="pt-20">
               <AnimateOnScroll animation="fadeInUp">
-                <h1 className="text-[72px] lg:text-[72px] text-[10vw] leading-[1.1] font-semibold text-white mb-0">
+                <h1 className="text-[72px] lg:text-[72px] text-[10vw] leading-[1.1] font-semibold text-white mb-0 feature-text">
                   About
                 </h1>
               </AnimateOnScroll>
-            </div>
-            <div className="w-full lg:w-5/12 lg:text-right">
-              <ul className="flex justify-start lg:justify-end gap-2 text-white">
+              <ul className="flex justify-center gap-2 text-white">
                 <li><Link to="/" className="text-white hover:text-primary">Home</Link></li>
                 <li className="opacity-50">/</li>
                 <li className="opacity-80">About</li>
@@ -120,9 +118,9 @@ export default function About() {
               This exceptional residence offers refined living with generous open spaces, bright interiors, and a warm modern design that blends comfort with style. Every room is crafted to create a welcoming atmosphere, giving you the perfect setting for daily life, relaxation, and memorable moments.
             </h3>
           </AnimateOnScroll>
-          
+
           <div className="h-8"></div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {propertyStats.map((stat, index) => (
               <AnimateOnScroll key={index} animation="fadeInUp" delay={400 + index * 200}>
@@ -147,7 +145,7 @@ export default function About() {
                   <span className="text-primary text-sm font-semibold uppercase tracking-widest">Discover</span>
                 </AnimateOnScroll>
                 <AnimateOnScroll animation="fadeInUp" delay={400}>
-                  <h2 className="text-white mt-2">Home Floorplans</h2>
+                  <h2 className="text-white mt-2 feature-text">Home Floorplans</h2>
                 </AnimateOnScroll>
                 <AnimateOnScroll animation="fadeInUp" delay={600}>
                   <div className="space-y-2 text-white/80">

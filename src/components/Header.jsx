@@ -11,11 +11,11 @@ const HOMEPAGE_VARIANTS = [
 ];
 
 const NAV_LINKS = [
-  { name: 'Home', path: '/', hasDropdown: true, dropdownItems: HOMEPAGE_VARIANTS },
+  { name: 'Home', path: '/', hasDropdown: false, dropdownItems: HOMEPAGE_VARIANTS },
+  { name: 'Our Properties', path: '/properties' },
   { name: 'About', path: '/about' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'News', path: '/news' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'News & Updates', path: '/news' },
+  { name: 'Contact Us', path: '/contact' },
 ];
 
 export default function Header() {
@@ -90,104 +90,137 @@ export default function Header() {
   const isCurrentPage = (path) => location.pathname === path;
 
   return (
-    <header 
-      className={`
-        fixed w-full z-[1001] transition-all duration-300 bg-white
-        ${isScrolled ? 'shadow-lg py-0' : 'py-1'}
-      `}
+    <header
+      className={`fixed w-full z-[1001] transition-all duration-300`}
       role="banner"
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex-shrink-0" aria-label="Go to homepage">
-            <img 
-              src="/images/logo.png" 
-              alt="Off-Style Real Estate" 
-              className={`transition-all duration-300 ${isScrolled ? 'h-[35px] md:h-[45px]' : 'h-[40px] md:h-[50px]'} w-auto`}
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center" role="navigation" aria-label="Main navigation">
-            <ul className="flex items-center gap-8">
-              {NAV_LINKS.map((link) => (
-                <li 
-                  key={link.name} 
-                  className="relative"
-                  ref={link.hasDropdown ? dropdownRef : null}
-                  onMouseEnter={() => link.hasDropdown && handleDropdownEnter(link.name)}
-                  onMouseLeave={() => link.hasDropdown && handleDropdownLeave()}
-                >
-                  <Link
-                    to={link.path}
-                    className={`
-                      text-[17px] font-bold py-6 inline-flex items-center gap-1 transition-colors
-                      ${isActive(link.path) ? 'text-primary' : 'text-heading hover:text-primary'}
-                    `}
-                    aria-haspopup={link.hasDropdown ? 'true' : undefined}
-                    aria-expanded={link.hasDropdown ? activeDropdown === link.name : undefined}
-                  >
-                    {link.name}
-                    {link.hasDropdown && (
-                      <svg 
-                        className={`w-3 h-3 transition-transform duration-200 ${activeDropdown === link.name ? 'rotate-180' : ''}`}
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    )}
-                  </Link>
-                  
-                  {/* Mega Menu Dropdown */}
-                  {link.hasDropdown && (
-                    <MegaDropdown 
-                      isOpen={activeDropdown === link.name}
-                      items={link.dropdownItems}
-                      currentPath={location.pathname}
-                      onMouseEnter={() => handleDropdownEnter(link.name)}
-                      onMouseLeave={handleDropdownLeave}
-                    />
-                  )}
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* CTA Button & Mobile Menu Toggle */}
-          <div className="flex items-center gap-4">
-            <Link 
-              to="/contact" 
-              className="!hidden lg:!inline-flex btn-main fx-slide"
-            >
-              <span>Schedule Visit</span>
-            </Link>
-            
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 rounded-lg hover:bg-gray-100 transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMobileMenuOpen}
-            >
-              <span className={`w-6 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-              <span className={`w-6 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`w-6 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-            </button>
+      {/* Top Bar */}
+      <div className="bg-[#16324f] text-white py-2 border-b border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-between items-center gap-2">
+            <div className="flex items-center gap-4 md:gap-8 text-[11px] md:text-sm">
+              <a href="mailto:info@offstylerealestate.com" className="feature-text flex items-center gap-2 hover:text-primary transition-colors">
+                <i className="fa-solid fa-envelope text-primary"></i>
+                <span>info@offstylerealestate.com</span>
+              </a>
+              <div className="hidden sm:flex items-center gap-2">
+                <i className="fa-solid fa-location-dot text-primary"></i>
+                <span>Kigali, Rwanda</span>
+              </div>
+              <a href="tel:+250780987150" className="feature-text flex items-center gap-2 hover:text-primary transition-colors">
+                <i className="fa-solid fa-phone text-primary"></i>
+                <span>+ 250 780987150</span>
+              </a>
+            </div>
+            <div className="flex items-center gap-4 text-sm md:text-base">
+              <a href="https://www.instagram.com/off_style_real_estates/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="Instagram">
+                <i className="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://wa.me/250780987150" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="WhatsApp">
+                <i className="fa-brands fa-whatsapp"></i>
+              </a>
+              <a href="#" className="hover:text-primary transition-colors" aria-label="LinkedIn">
+                <i className="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        <MobileNav 
-          isOpen={isMobileMenuOpen}
-          links={NAV_LINKS}
-          currentPath={location.pathname}
-          expandedItem={mobileExpandedItem}
-          onToggleExpand={setMobileExpandedItem}
-          isActive={isActive}
-        />
+      {/* Main Navigation Bar */}
+      <div className={`bg-white transition-all duration-300 ${isScrolled ? 'shadow-lg py-0' : 'py-1'}`}>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <Link to="/" className="flex-shrink-0" aria-label="Go to homepage">
+              <img
+                src="/images/logo.png"
+                alt="Off-Style Real Estate"
+                className={`transition-all duration-300 ${isScrolled ? 'h-[50px] md:h-[60px]' : 'h-[40px] md:h-[75px]'} w-auto`}
+              />
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center" role="navigation" aria-label="Main navigation">
+              <ul className="flex items-center gap-8">
+                {NAV_LINKS.map((link) => (
+                  <li
+                    key={link.name}
+                    className="relative"
+                    ref={link.hasDropdown ? dropdownRef : null}
+                    onMouseEnter={() => link.hasDropdown && handleDropdownEnter(link.name)}
+                    onMouseLeave={() => link.hasDropdown && handleDropdownLeave()}
+                  >
+                    <Link
+                      to={link.path}
+                      className={`
+                        text-[17px] font-bold py-6 inline-flex items-center gap-1 transition-colors
+                        ${isActive(link.path) ? 'text-primary' : 'text-heading hover:text-primary'}
+                      `}
+                      aria-haspopup={link.hasDropdown ? 'true' : undefined}
+                      aria-expanded={link.hasDropdown ? activeDropdown === link.name : undefined}
+                    >
+                      {link.name}
+                      {link.hasDropdown && (
+                        <svg
+                          className={`w-3 h-3 transition-transform duration-200 ${activeDropdown === link.name ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      )}
+                    </Link>
+
+                    {/* Mega Menu Dropdown */}
+                    {link.hasDropdown && (
+                      <MegaDropdown
+                        isOpen={activeDropdown === link.name}
+                        items={link.dropdownItems}
+                        currentPath={location.pathname}
+                        onMouseEnter={() => handleDropdownEnter(link.name)}
+                        onMouseLeave={handleDropdownLeave}
+                      />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* CTA Button & Mobile Menu Toggle */}
+            <div className="flex items-center gap-4">
+              <Link
+                to="/contact"
+                className="!hidden lg:!inline-flex btn-main fx-slide"
+              >
+                <span>Schedule Visit</span>
+              </Link>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMobileMenuOpen}
+              >
+                <span className={`w-6 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                <span className={`w-6 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                <span className={`w-6 h-0.5 bg-heading transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <MobileNav
+            isOpen={isMobileMenuOpen}
+            links={NAV_LINKS}
+            currentPath={location.pathname}
+            expandedItem={mobileExpandedItem}
+            onToggleExpand={setMobileExpandedItem}
+            isActive={isActive}
+          />
+        </div>
       </div>
     </header>
   );
@@ -198,18 +231,18 @@ function MegaDropdown({ isOpen, items, currentPath, onMouseEnter, onMouseLeave }
   return (
     <>
       {/* Invisible bridge to prevent gap issues */}
-      <div 
+      <div
         className={`absolute top-full left-1/2 -translate-x-1/2 w-full h-4 ${isOpen ? 'block' : 'hidden'}`}
         onMouseEnter={onMouseEnter}
       />
-      
-      <div 
+
+      <div
         className={`
           absolute left-1/2 -translate-x-1/2 top-full mt-2
           bg-white rounded-2xl shadow-2xl border border-gray-100
           transition-all duration-300 origin-top
-          ${isOpen 
-            ? 'opacity-100 scale-100 visible translate-y-0' 
+          ${isOpen
+            ? 'opacity-100 scale-100 visible translate-y-0'
             : 'opacity-0 scale-95 invisible -translate-y-2'
           }
         `}
@@ -223,36 +256,36 @@ function MegaDropdown({ isOpen, items, currentPath, onMouseEnter, onMouseLeave }
             <h6 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Homepage Styles</h6>
             <span className="text-xs text-gray-400">{items.length} variations</span>
           </div>
-          
+
           <div className="grid grid-cols-5 gap-4">
             {items.map((item) => (
-              <Link 
-                key={item.id} 
+              <Link
+                key={item.id}
                 to={item.path}
                 className="group block"
                 role="menuitem"
               >
                 <div className={`
                   relative overflow-hidden rounded-xl border-2 transition-all duration-300
-                  ${currentPath === item.path 
-                    ? 'border-primary shadow-lg shadow-primary/20' 
+                  ${currentPath === item.path
+                    ? 'border-primary shadow-lg shadow-primary/20'
                     : 'border-transparent hover:border-primary/50'
                   }
                 `}>
                   <div className="aspect-[4/3] overflow-hidden bg-gray-100">
-                    <img 
-                      src={`/images/demo/homepage-${item.id}.webp`} 
+                    <img
+                      src={`/images/demo/homepage-${item.id}.webp`}
                       alt={item.label}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"
                     />
                   </div>
-                  
+
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
                     <span className="text-white text-xs font-medium">View Demo</span>
                   </div>
-                  
+
                   {/* Current Page Indicator */}
                   {currentPath === item.path && (
                     <div className="absolute top-2 right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
@@ -262,7 +295,7 @@ function MegaDropdown({ isOpen, items, currentPath, onMouseEnter, onMouseLeave }
                     </div>
                   )}
                 </div>
-                
+
                 <div className="mt-3 text-center">
                   <h5 className={`text-sm font-semibold mb-0.5 transition-colors ${currentPath === item.path ? 'text-primary' : 'group-hover:text-primary'}`}>
                     {item.label}
@@ -281,7 +314,7 @@ function MegaDropdown({ isOpen, items, currentPath, onMouseEnter, onMouseLeave }
 // Mobile Navigation Component
 function MobileNav({ isOpen, links, currentPath, expandedItem, onToggleExpand, isActive }) {
   return (
-    <nav 
+    <nav
       className={`
         lg:hidden overflow-hidden transition-all duration-300 ease-in-out
         ${isOpen ? 'max-h-[500px] opacity-100 pb-6' : 'max-h-0 opacity-0'}
@@ -302,16 +335,16 @@ function MobileNav({ isOpen, links, currentPath, expandedItem, onToggleExpand, i
                   aria-expanded={expandedItem === link.name}
                 >
                   <span>{link.name}</span>
-                  <svg 
+                  <svg
                     className={`w-5 h-5 transition-transform duration-200 ${expandedItem === link.name ? 'rotate-180' : ''}`}
-                    fill="none" 
-                    stroke="currentColor" 
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                
+
                 {/* Mobile Dropdown Items */}
                 <div className={`
                   overflow-hidden transition-all duration-300
@@ -324,15 +357,15 @@ function MobileNav({ isOpen, links, currentPath, expandedItem, onToggleExpand, i
                         to={item.path}
                         className={`
                           flex items-center gap-3 p-3 rounded-lg transition-colors
-                          ${currentPath === item.path 
-                            ? 'bg-primary text-heading' 
+                          ${currentPath === item.path
+                            ? 'bg-primary text-heading'
                             : 'bg-white hover:bg-primary/10'
                           }
                         `}
                       >
                         <div className="w-12 h-9 rounded overflow-hidden flex-shrink-0 bg-gray-200">
-                          <img 
-                            src={`/images/demo/homepage-${item.id}.webp`} 
+                          <img
+                            src={`/images/demo/homepage-${item.id}.webp`}
                             alt={item.label}
                             className="w-full h-full object-cover"
                             loading="lazy"
@@ -349,8 +382,8 @@ function MobileNav({ isOpen, links, currentPath, expandedItem, onToggleExpand, i
                 to={link.path}
                 className={`
                   block py-3 px-4 text-[17px] font-bold rounded-lg transition-colors
-                  ${isActive(link.path) 
-                    ? 'bg-primary/10 text-primary' 
+                  ${isActive(link.path)
+                    ? 'bg-primary/10 text-primary'
                     : 'text-heading hover:bg-gray-100'}
                 `}
               >

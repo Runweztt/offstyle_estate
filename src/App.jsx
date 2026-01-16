@@ -21,20 +21,20 @@ function App() {
       <div className="App overflow-x-hidden">
         <Loader />
         <Header />
-        
+
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home5 />} />
           <Route path="/home-2" element={<Home2 />} />
           <Route path="/home-3" element={<Home3 />} />
           <Route path="/home-4" element={<Home4 />} />
-          <Route path="/home-5" element={<Home5 />} />
+          <Route path="/home-5" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/properties" element={<Gallery />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<News />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-        
+
         <Footer />
         <BackToTop />
         <MobileStickyCTA />

@@ -12,14 +12,13 @@ import Marquee from '../components/Marquee';
 
 export default function Home5() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  
+
   // Gallery images data
   const galleryImages = [
     { src: '/images/gallery/1.webp', title: 'Living Room' },
     { src: '/images/gallery/2.webp', title: 'Master Bedroom' },
     { src: '/images/gallery/3.webp', title: 'Dinning Room' },
     { src: '/images/gallery/4.webp', title: 'Kitchen' },
-    { src: '/images/gallery/5.webp', title: 'Bathroom' },
   ];
 
   // Floorplan tabs
@@ -110,7 +109,7 @@ export default function Home5() {
         >
           {sliderImages.map((img, idx) => (
             <SwiperSlide key={idx}>
-              <div 
+              <div
                 className="h-screen bg-cover bg-center relative"
                 style={{ backgroundImage: `url(${img})` }}
               >
@@ -119,7 +118,7 @@ export default function Home5() {
             </SwiperSlide>
           ))}
         </Swiper>
-        
+
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 z-10 flex items-center">
           <div className="container mx-auto px-4">
@@ -131,7 +130,7 @@ export default function Home5() {
                 </div>
               </AnimateOnScroll>
               <AnimateOnScroll animation="fadeInUp" delay={200}>
-                <h1 className="text-[48px] lg:text-[80px] leading-[1.05] font-semibold text-white mb-6">
+                <h1 className="header-home-text text-[48px] lg:text-[80px] leading-[1.05] font-semibold text-white mb-6">
                   Experience <span className="text-primary">Luxury</span> Living
                 </h1>
               </AnimateOnScroll>
@@ -153,7 +152,7 @@ export default function Home5() {
             </div>
           </div>
         </div>
-        
+
         {/* Thumbnail Slider */}
         <div className="absolute bottom-8 left-0 right-0 z-20">
           <div className="container mx-auto px-4">
@@ -180,7 +179,7 @@ export default function Home5() {
             </Swiper>
           </div>
         </div>
-        
+
         {/* Stats Sidebar */}
         <div className="absolute right-8 top-1/2 -translate-y-1/2 z-20 hidden lg:block">
           <div className="flex flex-col gap-6 text-center">
@@ -200,6 +199,44 @@ export default function Home5() {
         </div>
       </section>
 
+
+      {/* ========== OUR PROPERTIES SECTION ========== */}
+      <section className="py-[90px] bg-gray-50 overflow-hidden" id="section-gallery">
+        <div className="container mx-auto px-4 mb-8">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <AnimateOnScroll animation="fadeIn">
+                <span className="text-primary text-sm font-semibold uppercase tracking-widest">Properties</span>
+                <h2 className="mt-2">OFFSTYLE Properties</h2>
+              </AnimateOnScroll>
+            </div>
+            <AnimateOnScroll animation="fadeIn" delay={200}>
+              <Link to="/gallery" className="btn-main fx-slide">
+                <span>View All</span>
+              </Link>
+            </AnimateOnScroll>
+          </div>
+        </div>
+        <div className="px-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {galleryImages.map((img, idx) => (
+              <AnimateOnScroll key={idx} animation="fadeInUp" delay={idx * 100}>
+                <div className="relative group overflow-hidden rounded-[20px]">
+                  <img
+                    src={img.src}
+                    alt={img.title}
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <h5 className="text-white mb-0">{img.title}</h5>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ========== INTRO SECTION ========== */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -215,7 +252,7 @@ export default function Home5() {
                   Every room is crafted to create a welcoming atmosphere, giving you the perfect setting for daily life, relaxation, and memorable moments with family and friends.
                 </p>
               </AnimateOnScroll>
-              
+
               {/* Features List */}
               <AnimateOnScroll animation="fadeInUp" delay={200}>
                 <div className="grid grid-cols-2 gap-4">
@@ -238,7 +275,7 @@ export default function Home5() {
                 </div>
               </AnimateOnScroll>
             </div>
-            
+
             <div className="w-full lg:w-5/12">
               <AnimateOnScroll animation="fadeInRight">
                 <div className="relative">
@@ -255,13 +292,17 @@ export default function Home5() {
       </section>
 
       {/* ========== VIDEO TOUR SECTION ========== */}
-      <section className="p-0 relative overflow-hidden" style={{ padding: 0 }}>
-        <VideoPopup 
+      <section className="p-0 relative overflow-hidden hidden" style={{ padding: 0 }}>
+        <VideoPopup
           videoUrl="https://www.youtube.com/watch?v=JMyl8K2voHU"
           thumbnailUrl="/images/background/1.webp"
           className="w-full"
         />
       </section>
+
+
+
+
 
       {/* ========== FEATURES SECTION ========== */}
       <section className="py-20 bg-dark-1">
@@ -269,37 +310,37 @@ export default function Home5() {
           <div className="text-center mb-12">
             <AnimateOnScroll animation="fadeInUp">
               <span className="text-primary text-sm font-semibold uppercase tracking-widest">Premium Features</span>
-              <h2 className="text-white mt-2">Exceptional Amenities</h2>
+              <h2 className="text-white feature-text mt-2">Exceptional Amenities</h2>
             </AnimateOnScroll>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <FeatureCard 
+            <FeatureCard
               icon="fa-house-laptop"
               title="Smart Home Integration"
               desc="Control your entire home from your smartphone with advanced automation"
             />
-            <FeatureCard 
+            <FeatureCard
               icon="fa-bolt"
               title="Solar Power System"
               desc="Sustainable energy solution with efficient solar panel installation"
             />
-            <FeatureCard 
+            <FeatureCard
               icon="fa-person-swimming"
               title="Infinity Pool"
               desc="Stunning private pool with panoramic views for ultimate relaxation"
             />
-            <FeatureCard 
+            <FeatureCard
               icon="fa-video"
               title="Security System"
               desc="State-of-the-art surveillance with 24/7 monitoring and smart alerts"
             />
-            <FeatureCard 
+            <FeatureCard
               icon="fa-fire-flame-curved"
               title="Modern Fireplace"
               desc="Elegant gas fireplace for cozy evenings with family and friends"
             />
-            <FeatureCard 
+            <FeatureCard
               icon="fa-car"
               title="5-Car Garage"
               desc="Spacious climate-controlled garage with electric charging stations"
@@ -309,74 +350,41 @@ export default function Home5() {
       </section>
 
       {/* ========== FLOORPLAN SECTION ========== */}
-      <section className="py-[90px]" id="section-floorplan">
+      <section className="bg-dark-1 text-light py-[90px] hidden" id="section-floorplan">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-between gap-8">
             <div className="w-full lg:w-4/12">
-              <AnimateOnScroll animation="fadeInUp">
-                <span className="text-primary text-sm font-semibold uppercase tracking-widest">Discover</span>
-                <h2 className="mt-2">Home Floorplans</h2>
-                <p className="text-gray-600 mb-6">
-                  Explore the thoughtfully designed layouts that maximize space and natural light.
-                </p>
-              </AnimateOnScroll>
-              <AnimateOnScroll animation="fadeInUp" delay={200}>
-                <div className="space-y-2">
-                  <FloorplanRow label="Living Room" size="20 m²" />
-                  <FloorplanRow label="Dinning Room" size="15 m²" />
-                  <FloorplanRow label="Kitchen" size="15 m²" />
-                  <FloorplanRow label="Master Bedroom" size="16 m²" />
-                  <FloorplanRow label="Kids Bedroom 1" size="12 m²" />
-                  <FloorplanRow label="Kids Bedroom 2" size="12 m²" />
-                  <FloorplanRow label="Garage" size="40 m²" />
-                </div>
-              </AnimateOnScroll>
+              <div className="lg:pr-6">
+                <AnimateOnScroll animation="fadeInUp" delay={200}>
+                  <div className="subtitle">Discover</div>
+                </AnimateOnScroll>
+                <AnimateOnScroll animation="fadeInUp" delay={400}>
+                  <h2 className="text-white">Home Floorplans</h2>
+                </AnimateOnScroll>
+                <AnimateOnScroll animation="fadeInUp" delay={600}>
+                  <div className="space-y-2 text-white/80">
+                    <FloorplanRow label="Living Room" size="20 m²" />
+                    <FloorplanRow label="Dinning Room" size="15 m²" />
+                    <FloorplanRow label="Kitchen" size="15 m²" />
+                    <FloorplanRow label="Master Bedroom" size="16 m²" />
+                    <FloorplanRow label="Kids Bedroom 1" size="12 m²" />
+                    <FloorplanRow label="Kids Bedroom 2" size="12 m²" />
+                    <FloorplanRow label="Bath Room" size="6 m²" />
+                    <FloorplanRow label="Garage" size="40 m²" />
+                    <FloorplanRow label="Warehouse" size="4 m²" />
+                  </div>
+                </AnimateOnScroll>
+              </div>
             </div>
             <div className="w-full lg:w-6/12">
-              <AnimateOnScroll animation="fadeInUp" delay={400}>
-                <Tab tabs={floorplanTabs} />
+              <AnimateOnScroll animation="fadeInUp" delay={800}>
+                <Tab tabs={floorplanTabs} className="text-white" />
               </AnimateOnScroll>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========== GALLERY SECTION ========== */}
-      <section className="py-[90px] bg-gray-50 overflow-hidden" id="section-gallery">
-        <div className="container mx-auto px-4 mb-8">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <AnimateOnScroll animation="fadeIn">
-                <span className="text-primary text-sm font-semibold uppercase tracking-widest">Gallery</span>
-                <h2 className="mt-2">Interior Showcase</h2>
-              </AnimateOnScroll>
-            </div>
-            <AnimateOnScroll animation="fadeIn" delay={200}>
-              <Link to="/gallery" className="btn-main fx-slide">
-                <span>View All</span>
-              </Link>
-            </AnimateOnScroll>
-          </div>
-        </div>
-        <div className="px-4">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {galleryImages.map((img, idx) => (
-              <AnimateOnScroll key={idx} animation="fadeInUp" delay={idx * 100}>
-                <div className="relative group overflow-hidden rounded-[20px]">
-                  <img 
-                    src={img.src} 
-                    alt={img.title}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                    <h5 className="text-white mb-0">{img.title}</h5>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ========== LOCATION HIGHLIGHTS SECTION ========== */}
       <section className="py-[90px] overflow-hidden">
@@ -400,7 +408,7 @@ export default function Home5() {
             <div className="w-full lg:w-5/12 text-center lg:text-left">
               <AnimateOnScroll animation="fadeInUp">
                 <span className="text-primary text-sm font-semibold uppercase tracking-widest">Get In Touch</span>
-                <h2 className="text-white mt-4 mb-6">Ready to Make This Home Yours?</h2>
+                <h2 className="text-white mt-4 mb-6 feature-text">Ready to Make This Home Yours?</h2>
                 <p className="text-white/70 mb-8">
                   Experience this exceptional property in person. Schedule a private tour and let us show you every detail of this stunning home.
                 </p>
@@ -415,7 +423,7 @@ export default function Home5() {
                 </div>
               </AnimateOnScroll>
             </div>
-            
+
             <div className="w-full lg:w-5/12">
               <AnimateOnScroll animation="fadeInUp" delay={200}>
                 <div className="bg-white/5 backdrop-blur-lg rounded-[30px] p-8">
@@ -441,7 +449,7 @@ function FeatureCard({ icon, title, desc }) {
         <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
           <i className={`fa-solid ${icon} text-2xl text-primary group-hover:text-heading transition-colors`}></i>
         </div>
-        <h4 className="text-white mb-2">{title}</h4>
+        <h4 className="text-white feature-text mb-2">{title}</h4>
         <p className="text-white/60 mb-0">{desc}</p>
       </div>
     </AnimateOnScroll>
@@ -486,7 +494,7 @@ function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -542,8 +550,8 @@ function ContactForm() {
           className="form-control bg-white/10 border-white/20 text-white placeholder-white/50 h-[100px]"
           required
         ></textarea>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="btn-main w-full py-4"
           disabled={isSubmitting}
         >

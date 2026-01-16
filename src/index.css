@@ -29,7 +29,7 @@
 
 /* CSS Custom Properties matching original */
 :root {
-  --primary-color: #1a3a5c;
+  --primary-color: #f4bc44;
   --primary-color-rgb: 26, 58, 92;
   --secondary-color: #2d5a87;
   --secondary-color-rgb: 45, 90, 135;
@@ -873,4 +873,12 @@ select.form-control {
   section {
     padding: 50px 0;
   }
+}
+
+.header-home-text {
+  color: #fff !important;
+}
+
+.feature-text {
+  color: #fff !important;
 }

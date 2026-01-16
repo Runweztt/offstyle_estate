@@ -51,23 +51,21 @@ export default function News() {
     <main>
       {/* ========== HERO SECTION ========== */}
       <section className="relative overflow-hidden pt-[100px] text-white min-h-[200px] flex items-center">
-        <img 
-          src="/images/background/1.webp" 
-          alt="" 
+        <img
+          src="/images/background/1.webp"
+          alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="container mx-auto px-4 relative z-10 py-12">
-          <div className="flex flex-wrap justify-between items-center gap-6">
-            <div className="w-full lg:w-7/12">
+          <div className="flex flex-wrap justify-center items-center gap-6">
+            <div className="pt-20">
               <AnimateOnScroll animation="fadeInUp">
-                <h1 className="text-[72px] lg:text-[72px] text-[10vw] leading-[1.1] font-semibold text-white mb-0">
+                <h1 className="text-[72px] lg:text-[72px] text-[10vw] leading-[1.1] font-semibold text-white mb-0 feature-text">
                   News
                 </h1>
               </AnimateOnScroll>
-            </div>
-            <div className="w-full lg:w-5/12 lg:text-right">
-              <ul className="flex justify-start lg:justify-end gap-2 text-white">
+              <ul className="flex justify-center gap-2 text-white">
                 <li><Link to="/" className="text-white hover:text-primary">Home</Link></li>
                 <li className="opacity-50">/</li>
                 <li className="opacity-80">News</li>
@@ -86,29 +84,29 @@ export default function News() {
                 <article className="group">
                   {/* Image */}
                   <Link to={`/news/${article.id}`} className="block overflow-hidden rounded-[20px] mb-4">
-                    <img 
-                      src={article.image} 
+                    <img
+                      src={article.image}
                       alt={article.title}
                       className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                   </Link>
-                  
+
                   {/* Date */}
                   <span className="text-primary text-sm font-medium">{article.date}</span>
-                  
+
                   {/* Title */}
                   <h4 className="mt-2 mb-3 group-hover:text-primary transition-colors">
                     <Link to={`/news/${article.id}`}>
                       {article.title}
                     </Link>
                   </h4>
-                  
+
                   {/* Excerpt */}
                   <p className="mb-4">{article.excerpt}</p>
-                  
+
                   {/* Read More */}
-                  <Link 
-                    to={`/news/${article.id}`} 
+                  <Link
+                    to={`/news/${article.id}`}
                     className="text-heading font-semibold hover:text-primary transition-colors"
                   >
                     Read More →
